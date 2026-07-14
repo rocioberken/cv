@@ -1,0 +1,678 @@
+<html data-type="html" data-identifier="8f0a0838-f924-42fa-bf00-883c993760e4" data-title="Rocío Berken - Interactive CV" data-version="1" width="100%" height="800px"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro Berken | Portfolio CV</title>
+    <style>
+        :root {
+            --bg-primary: #0F0F11;
+            --bg-secondary: #16161A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --accent: #FF3B30; /* Bold Red Accent */
+            --accent-hover: #E03028;
+            --border: #27272A;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --accent: #2563EB; /* Deep Blue Accent for Light Mode stability */
+            --accent-hover: #1D4ED8;
+            --border: #E2E8F0;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-theme {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .btn-theme:hover {
+            background-color: var(--border);
+        }
+
+        .btn-theme svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        .theme-sun { display: none; }
+        [data-theme="light"] .theme-moon { display: none; }
+        [data-theme="light"] .theme-sun { display: block; }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 850px) {
+            .main-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        /* Profile Left Column */
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .profile-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-item svg {
+            width: 1.1rem;
+            height: 1.1rem;
+            fill: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Interactive Skills Chart/Graph */
+        .skills-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* Skill Switcher Tabs */
+        .skills-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-primary);
+            padding: 0.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex: 1;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .skills-visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .skill-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .skill-name {
+            color: var(--text-primary);
+        }
+
+        .skill-level {
+            color: var(--accent);
+        }
+
+        .skill-track {
+            height: 8px;
+            background-color: var(--bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .skill-fill {
+            height: 100%;
+            background-color: var(--accent);
+            border-radius: 4px;
+            width: 0%; /* Animated via JS */
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Main Content Right Column */
+        .experience-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border);
+        }
+
+        .experience-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .job-company {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .job-duration {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .experience-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .experience-points li {
+            position: relative;
+            padding-left: 1.25rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .experience-points li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Combined Grid for Education / Certifications */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .meta-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .meta-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .meta-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-card .institution {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-card .year {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .certification-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .certification-list li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .certification-list .cert-year {
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="header-container">
+            <div class="logo" id="header-logo">Rocío<span>.</span>Berken</div>
+            <div class="controls">
+                <button class="btn-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+                    <!-- Moon Icon (Dark Mode active, click for Light) -->
+                    <svg class="theme-moon" viewBox="0 0 24 24">
+                        <path d="M12 3c.132 0 .263 0 .393.007a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992V3zm0 2A7 7 0 1 0 12 21a6.963 6.963 0 0 0 5.426-2.581 9.5 9.5 0 0 1-10.744-9.284A6.993 6.993 0 0 0 12 5z"></path>
+                    </svg>
+                    <!-- Sun Icon (Light Mode active, click for Dark) -->
+                    <svg class="theme-sun" viewBox="0 0 24 24">
+                        <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.12zM19 11h3v2h-3v-2zM1 11h3v2H1v-2zm15.95-6.071l2.121-2.121 1.414 1.414-2.121 2.121-1.414-1.414zM3.515 19.071l2.121-2.121 1.414 1.414-2.121 2.121-1.414-1.414z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="profile-card">
+                <h1 class="profile-title" id="profile-name">Rocío Berken</h1>
+                <div class="profile-subtitle" id="profile-role">UX/UI | Production Lead</div>
+                <p class="profile-desc" id="profile-summary">
+                    Multidisciplinary digital designer with 7+ years of experience in UX/UI design, frontend development, and production management. Expert in translating complex brand identities into user-centered digital experiences.
+                </p>
+                
+                <div class="contact-list">
+                    <a href="mailto:rooberken@gmail.com" class="contact-item" id="link-email">
+                        <svg viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 4.238l-7.928 6.166a1 1 0 0 1-1.21 0L3 7.238V19h17V7.238zM5.14 5l6.86 5.336L18.86 5H5.14z"></path></svg>
+                        rooberken@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/rocioberken" target="_blank" class="contact-item" id="link-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.02-.5.1-.68a1.14 1.14 0 0 1 1-.75c.76 0 .97.61.97 1.51v4.59h2.81zM6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75zm1.4 10.13V10.13H5.1V18.5h2.8z"></path></svg>
+                        linkedin.com/in/rocioberken
+                    </a>
+                    <a href="https://roberken.myportfolio.com" target="_blank" class="contact-item" id="link-portfolio">
+                        <svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2zM4 6h5.586l2 2H20v10H4V6z"></path></svg>
+                        roberken.myportfolio.com
+                    </a>
+                    <div class="contact-item" id="loc-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0L12 23.728zm4.95-7.778a7 7 0 1 0-9.9 0L12 20.9l4.95-4.95zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path></svg>
+                        Buenos Aires, Argentina
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Interactive Graph Card -->
+            <div class="skills-card">
+                <div class="skills-header">
+                    <h3 id="skills-title">Expertise</h3>
+                </div>
+                
+                <div class="skills-tabs">
+                    <button class="tab-btn active" id="tab-design">Design</button>
+                    <button class="tab-btn" id="tab-tech">Tech</button>
+                    <button class="tab-btn" id="tab-pm">PM</button>
+                </div>
+
+                <div class="skills-visualization" id="skills-container">
+                    <!-- Dynamically populated skills go here -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Timeline -->
+        <main class="experience-timeline">
+            <h2 class="section-title" id="title-exp">Work Experience</h2>
+
+            <div class="experience-card">
+                <div class="card-meta">
+                    <div>
+                        <div class="job-title" id="job1-title">Production Lead</div>
+                        <div class="job-company" id="job1-company">VML</div>
+                    </div>
+                    <div class="job-duration" id="job1-duration">2025 - Present</div>
+                </div>
+                <ul class="experience-points">
+                    <li id="job1-p1">Led end-to-end production of digital banner campaigns for Commerce Hub, overseeing timelines, deliverables, and quality control.</li>
+                    <li id="job1-p2">Coordinated cross-functional teams and managed vendor relationships to ensure on-time, on-spec asset delivery.</li>
+                    <li id="job1-p3">Provided art direction for campaign creative, ensuring brand consistency and compliance across all formats.</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-meta">
+                    <div>
+                        <div class="job-title" id="job2-title">Resource Specialist</div>
+                        <div class="job-company" id="job2-company">VML</div>
+                    </div>
+                    <div class="job-duration" id="job2-duration">2022 - Present</div>
+                </div>
+                <ul class="experience-points">
+                    <li id="job2-p1">Managed resources for a multidisciplinary team of 20 professionals including developers, designers, and art directors.</li>
+                    <li id="job2-p2">Delivered custom resource strategies for challenging US-market client projects.</li>
+                    <li id="job2-p3">Applied Agile methodologies, Scrum ceremonies, and Jira workflows across product lifecycles.</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-meta">
+                    <div>
+                        <div class="job-title" id="job3-title">Digital Designer</div>
+                        <div class="job-company" id="job3-company">VML</div>
+                    </div>
+                    <div class="job-duration" id="job3-duration">2020 - 2022</div>
+                </div>
+                <ul class="experience-points">
+                    <li id="job3-p1">Designed and developed websites, interactive emails, and HTML5 responsive banners for Pfizer under ISO 9001.</li>
+                    <li id="job3-p2">Applied UX best practices specifically targeted towards low-accessibility healthcare user cohorts.</li>
+                    <li id="job3-p3">Earned developer certifications in Veeva, Salesforce, and DoubleClick Studio (DCM).</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="card-meta">
+                    <div>
+                        <div class="job-title" id="job4-title">Web Designer</div>
+                        <div class="job-company" id="job4-company">UO Solutions</div>
+                    </div>
+                    <div class="job-duration" id="job4-duration">2018 - 2020</div>
+                </div>
+                <ul class="experience-points">
+                    <li id="job4-p1">Designed and coded landing pages and advanced digital products for Pepsi, Mercado Pago, and Mercado Libre.</li>
+                    <li id="job4-p2">Built automated content assets inside Adobe AEM platforms for Nissan and Volkswagen.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title" id="title-edu">Education &amp; Certs</h2>
+            <div class="meta-grid">
+                <div class="meta-card">
+                    <h4 id="edu-title">Bachelor's Graphic Design</h4>
+                    <div class="institution" id="edu-inst">FADU UBA</div>
+                    <div class="year" id="edu-year">2015 – 2020 | Buenos Aires</div>
+                </div>
+
+                <div class="meta-card">
+                    <h4 id="cert-title">Certifications</h4>
+                    <ul class="certification-list">
+                        <li><span id="c1">AI for Experience Design</span> <span class="cert-year">2025</span></li>
+                        <li><span id="c2">Data-Driven Design (IxDF)</span> <span class="cert-year">2024</span></li>
+                        <li><span id="c3">UX/UI Design (CoderHouse)</span> <span class="cert-year">2023</span></li>
+                        <li><span id="c4">Front-End Developer</span> <span class="cert-year">2020</span></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // Theme Toggle Logic
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                body.setAttribute('data-theme', newTheme);
+            });
+
+            // Interactive Graph / Skills Dataset
+            const skillsData = {
+                design: [
+                    { name: 'UX/UI Design', level: 95 },
+                    { name: 'Prototyping & Wireframing', level: 90 },
+                    { name: 'Figma / Adobe Suite', level: 95 },
+                    { name: 'Design Systems', level: 85 }
+                ],
+                tech: [
+                    { name: 'HTML & CSS (Sass)', level: 90 },
+                    { name: 'JavaScript & ReactJS', level: 75 },
+                    { name: 'Veeva & Salesforce', level: 85 },
+                    { name: 'Adobe AEM / Webflow', level: 80 }
+                ],
+                pm: [
+                    { name: 'Agile & Scrum (Jira)', level: 90 },
+                    { name: 'Resource Management', level: 95 },
+                    { name: 'Vendor Coordination', level: 85 },
+                    { name: 'Art Direction', level: 85 }
+                ]
+            };
+
+            const skillsContainer = document.getElementById('skills-container');
+            const tabs = {
+                design: document.getElementById('tab-design'),
+                tech: document.getElementById('tab-tech'),
+                pm: document.getElementById('tab-pm')
+            };
+
+            function renderSkills(category) {
+                // Clear existing
+                skillsContainer.innerHTML = '';
+                
+                // Get skills
+                const skills = skillsData[category];
+                
+                skills.forEach(skill => {
+                    const barWrapper = document.createElement('div');
+                    barWrapper.className = 'skill-bar-wrapper';
+                    
+                    barWrapper.innerHTML = `
+                        <div class="skill-info">
+                            <span class="skill-name">${skill.name}</span>
+                            <span class="skill-level">${skill.level}%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" style="width: 0%"></div>
+                        </div>
+                    `;
+                    
+                    skillsContainer.appendChild(barWrapper);
+                    
+                    // Force a reflow and set width for transition animation
+                    setTimeout(() => {
+                        const fill = barWrapper.querySelector('.skill-fill');
+                        if (fill) fill.style.width = `${skill.level}%`;
+                    }, 50);
+                });
+            }
+
+            // Tab Event Listeners
+            Object.keys(tabs).forEach(key => {
+                tabs[key].addEventListener('click', () => {
+                    // Update active class
+                    Object.values(tabs).forEach(btn => btn.classList.remove('active'));
+                    tabs[key].classList.add('active');
+                    
+                    // Render selected category
+                    renderSkills(key);
+                });
+            });
+
+            // Initial render
+            renderSkills('design');
+        });
+    </script>
+
+</body></html>
